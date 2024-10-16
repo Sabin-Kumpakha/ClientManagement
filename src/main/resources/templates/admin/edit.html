@@ -15,16 +15,17 @@
             <h2 class="text-center mb-5">Edit Client</h2>
 
             <form method="post" th:object="${clientDto}">
+
                 <div class="row mb-3">
-                    <label class="col-sm-4 col-form-label">Client ID</label>
+                    <label for="id" class="col-sm-4 col-form-label">Client ID</label>
                     <div class="col-sm-8">
-                        <input class="form-control-plaintext" readonly th:value="${client.id}">
+                        <input id="id" class="form-control-plaintext" readonly th:value="${client.id}">
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-4 col-form-label">First Name</label>
+                    <label for="firstName" class="col-sm-4 col-form-label">First Name</label>
                     <div class="col-sm-8">
-                        <input class="form-control" th:field="${clientDto.firstName}">
+                        <input type="text" id="firstName" class="form-control" th:field="${clientDto.firstName}">
                         <p th:if="${#fields.hasErrors('firstName')}"
                            th:errorclass="text-danger"
                            th:errors="${clientDto.firstName}"></p>
@@ -32,9 +33,9 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label class="col-sm-4 col-form-label">Last Name</label>
+                    <label for="lastName" class="col-sm-4 col-form-label">Last Name</label>
                     <div class="col-sm-8">
-                        <input class="form-control" th:field="${clientDto.lastName}">
+                        <input type="text" id="lastName" class="form-control" th:field="${clientDto.lastName}">
                         <p th:if="${#fields.hasErrors('lastName')}"
                            th:errorclass="text-danger"
                            th:errors="${clientDto.lastName}"></p>
@@ -42,9 +43,9 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label class="col-sm-4 col-form-label">Email</label>
+                    <label for="email" class="col-sm-4 col-form-label">Email</label>
                     <div class="col-sm-8">
-                        <input class="form-control" th:field="${clientDto.email}">
+                        <input type="email" id="email" class="form-control" th:field="${clientDto.email}">
                         <p th:if="${#fields.hasErrors('email')}"
                            th:errorclass="text-danger"
                            th:errors="${clientDto.email}"></p>
@@ -52,9 +53,9 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label class="col-sm-4 col-form-label">Phone</label>
+                    <label for="phoneNumber" class="col-sm-4 col-form-label">Phone</label>
                     <div class="col-sm-8">
-                        <input class="form-control" th:field="${clientDto.phoneNumber}">
+                        <input type="tel" id="phoneNumber" class="form-control" th:field="${clientDto.phoneNumber}">
                         <p th:if="${#fields.hasErrors('phoneNumber')}"
                            th:errorclass="text-danger"
                            th:errors="${clientDto.phoneNumber}"></p>
@@ -62,9 +63,9 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label class="col-sm-4 col-form-label">Address</label>
+                    <label for="address" class="col-sm-4 col-form-label">Address</label>
                     <div class="col-sm-8">
-                        <input class="form-control" th:field="${clientDto.address}">
+                        <input type="text" id="address" class="form-control" th:field="${clientDto.address}">
                         <p th:if="${#fields.hasErrors('address')}"
                            th:errorclass="text-danger"
                            th:errors="${clientDto.address}"></p>
@@ -72,9 +73,9 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label class="col-sm-4 col-form-label">Status</label>
+                    <label for="status" class="col-sm-4 col-form-label">Status</label>
                     <div class="col-sm-8">
-                        <select class="form-control" th:field="${clientDto.status}">
+                        <select id="status" class="form-control" th:field="${clientDto.status}">
                             <option value='New'>New</option>
                             <option value='Permanent'>Permanent</option>
                             <option value='Lead'>Lead</option>
@@ -88,9 +89,9 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label class="col-sm-4 col-form-label">Created At</label>
+                    <label for="createdAt" class="col-sm-4 col-form-label">Created At</label>
                     <div class="col-sm-8">
-                        <input class="form-control-plaintext" readonly th:value="${client.createdAt}">
+                        <input id="createdAt" class="form-control-plaintext" readonly th:value="${client.createdAt}">
                     </div>
                 </div>
 
