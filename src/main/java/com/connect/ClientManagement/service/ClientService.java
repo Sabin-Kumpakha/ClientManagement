@@ -47,7 +47,7 @@ public class ClientService {
     }
 
     public boolean isEmailTaken(String email) {
-        return clientRepo.findByEmail(email) != null;
+        return clientRepo.findByEmail(email) != null;   // if the email is not null it means it exists
     }
 
     public boolean isPhoneNumberTaken(String phoneNumber) {

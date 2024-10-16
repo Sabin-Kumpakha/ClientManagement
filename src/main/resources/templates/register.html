@@ -26,12 +26,21 @@
             text-align: center;
             margin-bottom: 20px;
         }
+        /* Error message styling */
+        .success {
+            color: green;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
 <div class="register-container">
     <div class="register-header">
         <h2>Register</h2>
+    </div>
+
+    <div th:if="${success}" class="success">
+        Congratulations, you've successfully registered
     </div>
 
     <form th:action="@{/register}" th:object="${userDto}" method="post">

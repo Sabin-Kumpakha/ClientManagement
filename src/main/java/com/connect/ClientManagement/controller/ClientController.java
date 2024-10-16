@@ -23,20 +23,20 @@ public class ClientController {
 
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "admin/welcome";
     }
 
     @GetMapping("/allClients")
     public String getClients(Model model) {
         var clients = clientService.getAllClients();
         model.addAttribute("clients", clients);  // Fixed attribute name (it should be plural)
-        return "clients/allClients";
+        return "admin/allClients";    // templates --> clients --> allClients
     }
 
     @GetMapping("/create")
     public String createClient(Model model) {
         model.addAttribute("clientDto", new ClientDto());  // Changed to ClientDto
-        return "clients/create";
+        return "admin/create";
     }
 
     @PostMapping("/create")
@@ -52,11 +52,11 @@ public class ClientController {
         }
 
         if (result.hasErrors()) {
-            return "clients/create";
+            return "admin/create";
         }
 
         clientService.saveClient(clientDto);
-        return "redirect:/admin/clients/allClients";
+        return "redirect:/admin/clients/allClients";    // redirect to all clients page after creating new client
     }
 
     @GetMapping("/edit")
@@ -77,7 +77,7 @@ public class ClientController {
             model.addAttribute("client", client);
             model.addAttribute("clientDto", clientDto);
 
-            return "clients/edit";
+            return "admin/edit";
     }
 
 
@@ -88,12 +88,12 @@ public class ClientController {
             return "redirect:/admin/clients/allClients";
         }
         if (result.hasErrors()) {
-            return "clients/edit";
+            return "admin/edit";
         }
         try {
             clientService.updateClient(id, clientDto, result);
         } catch (RuntimeException ex) {
-            return "clients/edit";
+            return "admin/edit";
         }
         return "redirect:/admin/clients/allClients";
     }

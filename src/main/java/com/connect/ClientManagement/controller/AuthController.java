@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AuthController {
@@ -29,8 +30,12 @@ public class AuthController {
     }
 
     @GetMapping("/register")
-    public String register(Model model) {
+    public String register(Model model, @RequestParam(value = "success", required = false) String success) {
         model.addAttribute("userDto", new UserDto());
+        // Pass success flag to the template
+        if (success != null) {
+            model.addAttribute("success", true);
+        }
         return "register";
     }
 
@@ -53,7 +58,9 @@ public class AuthController {
 
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userServices.saveUser(userDto);
-        return "redirect:/login";   // Redirect to login page after successful registration
+        return "redirect:/register?success=true";
+
+//        return "redirect:/login";   // Redirect to login page after successful registration
     }
 
 }

@@ -1,4 +1,4 @@
-package com.connect.ClientManagement.config;
+package com.connect.ClientManagement.service;
 
 import com.connect.ClientManagement.model.User;
 import org.springframework.security.core.GrantedAuthority;

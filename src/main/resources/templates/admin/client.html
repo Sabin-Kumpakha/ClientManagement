@@ -23,10 +23,10 @@
       <p class="card-text"><strong>Created At:</strong> <span th:text="${client.createdAt.toString().substring(0, 10)}"></span></p>
     </div>
     <div class="card-footer text-center">
-      <a class="btn btn-primary" th:href="@{/clients/edit(id=${client.id})}">
+      <a class="btn btn-primary" th:href="@{/templates/admin/edit(id=${client.id})}">
         Edit
       </a>
-      <a class="btn btn-danger" th:href="@{/clients/delete(id=${client.id})}" onclick="return confirm('Are you sure?')">
+      <a class="btn btn-danger" th:href="@{/templates/admin/delete(id=${client.id})}" onclick="return confirm('Are you sure?')">
         Delete
       </a>
     </div>
