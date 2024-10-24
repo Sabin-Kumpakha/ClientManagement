@@ -1,5 +1,6 @@
 package com.connect.ClientManagement.model;
 
+import com.connect.ClientManagement.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,5 +25,7 @@ public class User {
     private String phoneNumber;
 
     private String password;
-    private String role;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }

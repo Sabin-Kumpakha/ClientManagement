@@ -50,6 +50,7 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone Number</th>
@@ -63,6 +64,7 @@
         <tbody class="table-group-divider">
         <tr th:each="client : ${clients}">
             <td th:text="${client.id}"></td>
+            <td><img th:src="@{/admin/clients/image/{clientId}(clientId=${client.id})}" alt="Client Image" class="img-thumbnail" style="width: 20%; height: auto;" /></td>
             <td th:text="@{${client.firstName} + ' ' + ${client.lastName}}"></td>
             <td th:text="${client.email}"></td>
             <td th:text="${client.phoneNumber}"></td>
@@ -72,12 +74,15 @@
             <td th:text="${client.updatedAt != null ? client.updatedAt.toString().substring(0, 10) : ''}"></td>
 
             <td style="white-space:nowrap;  text-align:center;">
-                <a class="btn btn-primary btn-sm" th:href="@{/admin/clients/edit(id=${client.id})}">
+                <a class="btn btn-primary btn-sm" th:href="@{/admin/clients/edit/{id}(id=${client.id})}">
                     Edit
                 </a>
-                <a class="btn btn-danger btn-sm" th:href="@{/admin/clients/delete(id=${client.id})}"
+                <a class="btn btn-danger btn-sm" th:href="@{/admin/clients/delete/{id}(id=${client.id})}"
                    onclick="return confirm('Are you sure?')">
                     Delete
+                </a>
+                <a class="btn btn-primary btn-sm" th:href="@{/admin/clients/view/{id}(id=${client.id})}">
+                    View
                 </a>
             </td>
         </tr>
