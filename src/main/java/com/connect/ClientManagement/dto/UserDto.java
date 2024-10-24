@@ -1,5 +1,8 @@
 package com.connect.ClientManagement.dto;
 
+import com.connect.ClientManagement.enums.Role;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +26,9 @@ public class UserDto {
     @NotEmpty(message = "Password is required")
     @Size(min = 6, max = 100, message = "Password must be greater than 6 digits")
     private String password;
-    
-    private String role="USER";
 
+    @Enumerated(EnumType.STRING)
+    private Role role;     // ADMIN, USER
+//    private Role role=Role.USER
+    //private String role="USER";
 }

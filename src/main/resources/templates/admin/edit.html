@@ -12,20 +12,35 @@
 
     <div class="row">
         <div class="col-md-8 mx-auto rounded border p-4">
+
+            <a class="btn btn-primary" href="/admin/clients/allClients">Back to Clients List</a>
+
             <h2 class="text-center mb-5">Edit Client</h2>
 
-            <form method="post" th:object="${clientDto}">
+            <!-- Success Message -->
+            <div th:if="${successMsg}">
+                <p class="text-center fs-4 text-success" th:text="${successMsg}"></p> <!-- Changed text color to success (green) -->
+            </div>
+
+            <!-- Error Message -->
+            <div th:if="${errorMsg}">
+                <p class="text-center fs-4 text-danger" th:text="${errorMsg}"></p>
+            </div>
+            <!--
+            th:action="@{admin/clients/edit/{id}(id=${client.id})}"
+            -->
+            <form method="post" th:object="${clientDto}" enctype="multipart/form-data" >
 
                 <div class="row mb-3">
                     <label for="id" class="col-sm-4 col-form-label">Client ID</label>
                     <div class="col-sm-8">
-                        <input id="id" class="form-control-plaintext" readonly th:value="${client.id}">
+                        <input id="id" class="form-control-plaintext" readonly th:value="${updatedClient.id}">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="firstName" class="col-sm-4 col-form-label">First Name</label>
                     <div class="col-sm-8">
-                        <input type="text" id="firstName" class="form-control" th:field="${clientDto.firstName}">
+                        <input type="text" id="firstName" class="form-control" th:field="${clientDto.firstName}" placeholder="Enter your First Name" required>
                         <p th:if="${#fields.hasErrors('firstName')}"
                            th:errorclass="text-danger"
                            th:errors="${clientDto.firstName}"></p>
@@ -35,7 +50,7 @@
                 <div class="row mb-3">
                     <label for="lastName" class="col-sm-4 col-form-label">Last Name</label>
                     <div class="col-sm-8">
-                        <input type="text" id="lastName" class="form-control" th:field="${clientDto.lastName}">
+                        <input type="text" id="lastName" class="form-control" th:field="${clientDto.lastName}" placeholder="Enter your Last Name" required>
                         <p th:if="${#fields.hasErrors('lastName')}"
                            th:errorclass="text-danger"
                            th:errors="${clientDto.lastName}"></p>
@@ -45,7 +60,7 @@
                 <div class="row mb-3">
                     <label for="email" class="col-sm-4 col-form-label">Email</label>
                     <div class="col-sm-8">
-                        <input type="email" id="email" class="form-control" th:field="${clientDto.email}">
+                        <input type="email" id="email" class="form-control" th:field="${clientDto.email}" placeholder="Enter your email" required>
                         <p th:if="${#fields.hasErrors('email')}"
                            th:errorclass="text-danger"
                            th:errors="${clientDto.email}"></p>
@@ -55,7 +70,7 @@
                 <div class="row mb-3">
                     <label for="phoneNumber" class="col-sm-4 col-form-label">Phone</label>
                     <div class="col-sm-8">
-                        <input type="tel" id="phoneNumber" class="form-control" th:field="${clientDto.phoneNumber}">
+                        <input type="tel" id="phoneNumber" class="form-control" th:field="${clientDto.phoneNumber}" placeholder="Enter your Phone Number" required>
                         <p th:if="${#fields.hasErrors('phoneNumber')}"
                            th:errorclass="text-danger"
                            th:errors="${clientDto.phoneNumber}"></p>
@@ -65,7 +80,7 @@
                 <div class="row mb-3">
                     <label for="address" class="col-sm-4 col-form-label">Address</label>
                     <div class="col-sm-8">
-                        <input type="text" id="address" class="form-control" th:field="${clientDto.address}">
+                        <input type="text" id="address" class="form-control" th:field="${clientDto.address}" placeholder="Enter your Address" required>
                         <p th:if="${#fields.hasErrors('address')}"
                            th:errorclass="text-danger"
                            th:errors="${clientDto.address}"></p>
@@ -89,9 +104,26 @@
                 </div>
 
                 <div class="row mb-3">
+                    <label for="image" class="col-sm-4 col-form-label">Upload Image</label>
+                    <div class="col-sm-8">
+                        <input type="file" id="image" name="image" class="form-control">
+
+                        <!-- Show the current image name if the image exists -->
+                        <div th:if="${clientDto.imageName != null}">
+                            <p class="mt-2">Current Image: <span th:text="${clientDto.imageName}"></span></p>
+                        </div>
+
+                        <p th:if="${#fields.hasErrors('imageName')}"
+                           th:errorclass="text-danger"
+                           th:errors="${clientDto.imageName}"></p>
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
                     <label for="createdAt" class="col-sm-4 col-form-label">Created At</label>
                     <div class="col-sm-8">
-                        <input id="createdAt" class="form-control-plaintext" readonly th:value="${client.createdAt}">
+                        <input id="createdAt" class="form-control-plaintext" readonly th:value="${updatedClient.createdAt}">
                     </div>
                 </div>
 

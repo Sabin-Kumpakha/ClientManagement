@@ -108,9 +108,9 @@ public class ClientController {
         }
         try {
             clientService.saveClient(clientDto, image);  // Pass image for saving
-            return "redirect:/admin/clients/allClients";
+            return "redirect:/admin/clients/allClients";    // redirect to all clients mapping
         } catch (Exception e) {
-            return "redirect:admin/create";    // redirect to create page after creating new client
+            return "admin/create";    // redirect to create page
         }
     }
 

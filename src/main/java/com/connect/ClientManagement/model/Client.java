@@ -1,5 +1,6 @@
 package com.connect.ClientManagement.model;
 
+import com.connect.ClientManagement.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +23,16 @@ public class Client {
     private String email;
     private String phoneNumber;
     private String address;
-    private String status;      // New, Permanent, Lead, Occasional, Inactive
+
+    @Enumerated(EnumType.STRING)
+    private Status status;      // New, Permanent, Lead, Occasional, Inactive
+
     private Date createdAt;
     private Date updatedAt;
+
+    private String imageName;
+    private String imageType;
+    @Lob    //Large Binary Object
+    private byte[] imageData;
+
 }

@@ -1,15 +1,18 @@
 package com.connect.ClientManagement.dto;
 
+import com.connect.ClientManagement.enums.Status;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Lob;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClientDto {
+
     @NotEmpty(message = "The First Name is required")
     private String firstName;
 
@@ -17,7 +20,7 @@ public class ClientDto {
     private String lastName;
 
     @NotEmpty(message = "The Email is required")
-    @Email
+    @Email(message = "Please provide a valid email")
     private String email;
 
     @NotEmpty(message = "The Phone Number is required")
@@ -25,7 +28,12 @@ public class ClientDto {
 
     private String address;
 
-    @NotEmpty(message = "The Status is required")
-    private String status;      // New, Permanent, Lead, Occasional, Inactive
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    private String imageName;
+    private String imageType;
+    @Lob    //Large Binary Object
+    private byte[] imageData;
 
 }

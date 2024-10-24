@@ -10,18 +10,37 @@
 <body>
 <div class="container my-3">
   <h1 class="text-center mb-3">Client Details</h1>
-  <a class="btn btn-primary" href="/clients/">Back to Clients List</a>
+  <a class="btn btn-primary" href="/admin/clients/allClients">Back to Clients List</a>
 
   <div class="card my-4">
-    <div class="card-body">
+    <div class="card-body" >
       <h5 class="card-title" th:text="${client.firstName} + ' ' + ${client.lastName}"></h5>
       <p class="card-text"><strong>ID:</strong> <span th:text="${client.id}"></span></p>
+      <!-- Displaying the client's image -->
+      <div>
+        <p class="card-text"><strong>Image:</strong></p>
+<!--        <div class="card" style="width: 50%;">-->
+            <img th:src="@{/admin/clients/image/{clientId}(clientId=${client.id})}" alt="Client Image" class="img-thumbnail" style="width: 20%; height: auto;" />
+<!--        </div>-->
+      </div>
       <p class="card-text"><strong>Email:</strong> <span th:text="${client.email}"></span></p>
       <p class="card-text"><strong>Phone Number:</strong> <span th:text="${client.phoneNumber}"></span></p>
       <p class="card-text"><strong>Address:</strong> <span th:text="${client.address}"></span></p>
       <p class="card-text"><strong>Status:</strong> <span th:text="${client.status}"></span></p>
       <p class="card-text"><strong>Created At:</strong> <span th:text="${client.createdAt.toString().substring(0, 10)}"></span></p>
+      <p class="card-text"><strong>Updated At:</strong> <span th:text="${client.updatedAt != null ? client.createdAt.toString().substring(0, 10) : ''}"></span></p>
     </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
+</body>
+</html>
+
+<!--
     <div class="card-footer text-center">
       <a class="btn btn-primary" th:href="@{/templates/admin/edit(id=${client.id})}">
         Edit
@@ -30,12 +49,4 @@
         Delete
       </a>
     </div>
-  </div>
-
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-</script>
-</body>
-</html>
+-->

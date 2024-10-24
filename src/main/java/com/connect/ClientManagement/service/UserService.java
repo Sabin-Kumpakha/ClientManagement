@@ -1,6 +1,7 @@
 package com.connect.ClientManagement.service;
 
 import com.connect.ClientManagement.dto.UserDto;
+import com.connect.ClientManagement.enums.Role;
 import com.connect.ClientManagement.model.User;
 import com.connect.ClientManagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepo;
 
-    public boolean saveUser(UserDto userDto){
+    public void saveUser(UserDto userDto){
         // for validation
         User user = new User();
         user.setUsername(userDto.getUsername());
@@ -20,18 +21,16 @@ public class UserService {
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
         // Set the role, use default "USER" if not provided
-        if (userDto.getRole() == null || userDto.getRole().isEmpty()) {
-            user.setRole("USER");  // Default role
+        if (userDto.getRole() == null) {
+            user.setRole(Role.USER);  // Default role is USER
         } else {
             user.setRole(userDto.getRole());
         }
         // Save user and return status
         try {
             userRepo.save(user);
-            return true; // Indicate success
         } catch (Exception e) {
-            // Handle exceptions (log error, etc.)
-            return false; // Indicate failure
+            throw new RuntimeException("Failed to save user", e);
         }
     }
 
